@@ -5,9 +5,17 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const log4js = require('./utils/log4js')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+
+log4js.debug('hello')
+log4js.info('hello')
+
+app.use(() => {
+  ctx.body = 'hello'
+})
 
 // error handler
 onerror(app)
@@ -43,6 +51,7 @@ app.use(users.routes(), users.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
+  log4js.error(err)
 })
 
 module.exports = app

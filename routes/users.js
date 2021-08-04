@@ -10,7 +10,7 @@ router.get('/login', function (ctx, next) {
   const { username, password } = ctx.request.body
   ctx.body = {
     code: 0,
-    msg: '登录成功'
+    msg: '登录成功',
   }
 })
 
